@@ -3,7 +3,7 @@ package com.example;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Spy;
+import org.mockito.Mock;
 
 import static org.junit.Assert.*;
 
@@ -12,8 +12,8 @@ public class LionTestParDoesHaveMane {
     private final String hasMane;
     private final Boolean expected;
 
-    @Spy
-    Feline feline;
+    @Mock
+    Feline mocFeline;
 
     public LionTestParDoesHaveMane(String hasMane, Boolean expected) {
         this.hasMane = hasMane;
@@ -32,7 +32,7 @@ public class LionTestParDoesHaveMane {
     @Test
     public void doesHaveManeBooleanOrException() {
         try {
-            Lion lion = new Lion(hasMane, feline);
+            Lion lion = new Lion(hasMane, mocFeline);
             if (expected != null) {
                 assertEquals(expected, lion.doesHaveMane());
             } else {

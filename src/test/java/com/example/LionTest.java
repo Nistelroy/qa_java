@@ -3,8 +3,8 @@ package com.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -13,21 +13,21 @@ import java.util.List;
 public class LionTest {
     public static final int KITTENS_ONE = 1;
 
-    @Spy
-    Feline spyFeline = new Feline();
+    @Mock
+    Feline mocFeline = new Feline();
 
     @Test
     public void getKittensMethodCallReturnOne() throws Exception {
-        Lion spyLion = new Lion("Самец", spyFeline);
-        Mockito.when(spyLion.getKittens()).thenReturn(KITTENS_ONE);
-        Assert.assertEquals("количество в потомстве не совпадает", KITTENS_ONE, spyLion.getKittens());
+        Lion lion = new Lion("Самец", mocFeline);
+        Mockito.when(lion.getKittens()).thenReturn(KITTENS_ONE);
+        Assert.assertEquals("количество в потомстве не совпадает", KITTENS_ONE, lion.getKittens());
     }
 
     @Test
     public void getFoodMethodCallReturnListMeat() throws Exception {
-        Lion spyLion = new Lion("Самец", spyFeline);
+        Lion lion = new Lion("Самец", mocFeline);
         List<String> foodLion = List.of("Животные", "Птицы", "Рыба");
-        Mockito.when(spyLion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertEquals(foodLion, spyLion.getFood());
+        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(foodLion, lion.getFood());
     }
 }

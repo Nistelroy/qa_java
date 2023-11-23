@@ -3,7 +3,6 @@ package com.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 
 import org.mockito.Mockito;
 import org.mockito.Spy;
@@ -21,9 +20,6 @@ public class FelineTest {
     @Spy
     Feline spyFeline;
 
-    @Mock
-    Feline mocFeline;
-
     @Test
     public void eatMeatMethodCallReturnListMeat() throws Exception {
         List<String> foodFeline = List.of("Животные", "Птицы", "Рыба");
@@ -38,13 +34,12 @@ public class FelineTest {
 
     @Test
     public void getKittensOneKittensReturnOne() {
-
         Assert.assertEquals("количество детей не совпадает", KITTENS_ONE, spyFeline.getKittens(KITTENS_ONE));
     }
 
     @Test
     public void getKittensNoArgumentMethodCall() {
-        mocFeline.getKittens();
-        Mockito.verify(mocFeline, Mockito.times(1)).getKittens();
+        spyFeline.getKittens();
+        Mockito.verify(spyFeline, Mockito.times(1)).getKittens();
     }
 }
